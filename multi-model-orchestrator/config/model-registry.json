@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.1.0",
+  "updated": "2026-07-17",
+  "author": "Codex/Grok multi-model-orchestrator",
+  "refresh_policy": "Live discovery (Discover-Providers.ps1) is the authority for available models. Static aliases here are convenience hints and must be refreshed when provider model names change; never treat this file as the sole model inventory.",
+  "reasoning_tier_policy": {
+    "allowed_tiers": ["highest", "second_highest"],
+    "forbidden_tiers": ["low", "lowest", "minimal"],
+    "task_defaults": {
+      "simple": "second_highest",
+      "ordinary": "highest",
+      "difficult": "highest"
+    },
+    "notes": "Map provider-specific effort labels at discovery time. Never select a tier below second_highest."
+  },
+  "task_attributes": {
+    "canonical": ["ui", "web_frontend", "image_generation"],
+    "aliases": {
+      "ui": ["ui", "interface", "ui_design", "visual", "visual_design"],
+      "web_frontend": ["web_frontend", "web-frontend", "frontend", "web"],
+      "image_generation": ["image_generation", "image-generation", "image", "images", "img", "img_gen"]
+    },
+    "visual_group": ["ui", "web_frontend", "image_generation"],
+    "visual_preferred": {
+      "provider": "agy",
+      "model_alias": "gemini-3.5-flash-high",
+      "reasoning_tier": "highest"
+    },
+    "notes": "Explicit -TaskAttributes influence the default route for non-difficult profiles. Difficult profiles keep Claude-first quality and are never silently downgraded by visual attributes. When the visual preferred model is missing or excluded, selection continues on the profile preferred chain. Unknown attributes are audited but ignored for routing."
+  },
+  "providers": {
+    "grok": {
+      "cli_names": ["grok", "grok.exe"],
+      "common_paths": [
+        "%USERPROFILE%\\.grok\\bin\\grok.exe",
+        "%LOCALAPPDATA%\\Programs\\grok\\grok.exe"
+      ],
+      "discover_command": ["models"],
+      "version_command": ["version"],
+      "capabilities": ["code", "test", "docs", "debug", "architecture"],
+      "default_model_hints": ["grok-4.5"],
+      "reasoning_effort_order_desc": ["high", "medium", "low"],
+      "fallback_order": ["agy:claude-opus-thinking", "agy:claude-sonnet-thinking", "agy:gemini-3.1-pro-high", "grok:default"]
+    },
+    "agy": {
+      "cli_names": ["agy", "agy.exe"],
+      "common_paths": [
+        "%LOCALAPPDATA%\\agy\\bin\\agy.exe",
+        "%USERPROFILE%\\AppData\\Local\\agy\\bin\\agy.exe"
+      ],
+      "discover_command": ["models"],
+      "version_command": ["--version"],
+      "capabilities": ["code", "test", "docs", "debug", "architecture", "security", "migration"],
+      "default_model_hints": [
+        "Claude Opus 4.6 (Thinking)",
+        "Claude Sonnet 4.6 (Thinking)",
+        "Gemini 3.1 Pro (High)",
+        "Gemini 3.5 Flash (High)",
+        "Gemini 3.5 Flash (Medium)"
+      ],
+      "model_aliases": {
+        "claude-opus-thinking": ["Claude Opus 4.6 (Thinking)", "Claude Opus", "opus thinking"],
+        "claude-sonnet-thinking": ["Claude Sonnet 4.6 (Thinking)", "Claude Sonnet", "sonnet thinking"],
+        "gemini-3.1-pro-high": ["Gemini 3.1 Pro (High)", "Gemini 3.1 Pro High"],
+        "gemini-3.1-pro-low": ["Gemini 3.1 Pro (Low)"],
+        "gemini-3.5-flash-high": ["Gemini 3.5 Flash (High)"],
+        "gemini-3.5-flash-medium": ["Gemini 3.5 Flash (Medium)"],
+        "gemini-3.5-flash-low": ["Gemini 3.5 Flash (Low)"]
+      },
+      "reasoning_embedded_in_model_name": true,
+      "forbidden_model_substrings": ["(Low)", "(low)", " Low"],
+      "fallback_order": ["claude-opus-thinking", "claude-sonnet-thinking", "gemini-3.1-pro-high", "grok:default"]
+    }
+  },
+  "routing_profiles": {
+    "difficult_architecture": {
+      "task_class": "difficult",
+      "preferred": [
+        { "provider": "agy", "model_alias": "claude-opus-thinking" },
+        { "provider": "agy", "model_alias": "claude-sonnet-thinking" },
+        { "provider": "agy", "model_alias": "gemini-3.1-pro-high" },
+        { "provider": "grok", "model_hint": "grok-4.5", "reasoning_tier": "highest" }
+      ]
+    },
+    "difficult_security": {
+      "task_class": "difficult",
+      "preferred": [
+        { "provider": "agy", "model_alias": "claude-opus-thinking" },
+        { "provider": "agy", "model_alias": "claude-sonnet-thinking" },
+        { "provider": "agy", "model_alias": "gemini-3.1-pro-high" },
+        { "provider": "grok", "model_hint": "grok-4.5", "reasoning_tier": "highest" }
+      ]
+    },
+    "difficult_migration": {
+      "task_class": "difficult",
+      "preferred": [
+        { "provider": "agy", "model_alias": "claude-opus-thinking" },
+        { "provider": "agy", "model_alias": "claude-sonnet-thinking" },
+        { "provider": "agy", "model_alias": "gemini-3.1-pro-high" },
+        { "provider": "grok", "model_hint": "grok-4.5", "reasoning_tier": "highest" }
+      ]
+    },
+    "difficult_debug": {
+      "task_class": "difficult",
+      "preferred": [
+        { "provider": "agy", "model_alias": "claude-opus-thinking" },
+        { "provider": "agy", "model_alias": "claude-sonnet-thinking" },
+        { "provider": "agy", "model_alias": "gemini-3.1-pro-high" },
+        { "provider": "grok", "model_hint": "grok-4.5", "reasoning_tier": "highest" }
+      ]
+    },
+    "ordinary_implementation": {
+      "task_class": "ordinary",
+      "preferred": [
+        { "provider": "grok", "model_hint": "grok-4.5", "reasoning_tier": "highest" },
+        { "provider": "agy", "model_alias": "gemini-3.5-flash-high" }
+      ]
+    },
+    "simple_mechanical": {
+      "task_class": "simple",
+      "preferred": [
+        { "provider": "grok", "model_hint": "grok-4.5", "reasoning_tier": "second_highest" },
+        { "provider": "agy", "model_alias": "gemini-3.5-flash-high" }
+      ]
+    }
+  },
+  "strategies": {
+    "single": { "max_concurrent_writers": 1, "requires_worktrees": false },
+    "parallel": { "max_concurrent_writers": 8, "requires_worktrees": true },
+    "debate": { "max_concurrent_writers": 0, "requires_worktrees": false, "read_only_parallel": true },
+    "dual-implementation": { "max_concurrent_writers": 2, "requires_worktrees": true },
+    "pipeline": { "max_concurrent_writers": 1, "requires_worktrees": false, "ordered_stages": true }
+  }
+}
