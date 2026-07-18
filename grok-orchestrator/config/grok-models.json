@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "updated": "2026-07-18",
+  "author": "Codex/Grok grok-orchestrator",
+  "refresh_policy": "Live discovery (Discover-Grok.ps1 via grok models / grok version) is the authority for available models. Static model_hints below are convenience only and must not invent models that discovery does not list.",
+  "reasoning_tier_policy": {
+    "allowed_tiers": ["highest", "second_highest"],
+    "forbidden_tiers": ["low", "lowest", "minimal"],
+    "provider_effort_order_desc": ["high", "medium", "low"],
+    "mapping": {
+      "highest": "high",
+      "second_highest": "medium"
+    },
+    "notes": "Abstract tiers only. Map highest->high and second_highest->medium. Reject low/lowest/minimal before any provider contact, including values smuggled through ExtraArgs."
+  },
+  "cli": {
+    "cli_names": ["grok", "grok.exe"],
+    "common_paths": [
+      "%USERPROFILE%\\.grok\\bin\\grok.exe",
+      "%LOCALAPPDATA%\\Programs\\grok\\grok.exe"
+    ],
+    "discover_command": ["models"],
+    "version_command": ["version"],
+    "headless_flags": {
+      "always_approve_default": true,
+      "cwd_flag": "--cwd",
+      "model_flag": "--model",
+      "reasoning_effort_flag": "--reasoning-effort",
+      "prompt_file_flag": "--prompt-file",
+      "single_flag": "--single",
+      "always_approve_flag": "--always-approve"
+    }
+  },
+  "model_hints": {
+    "highest": {
+      "model": "grok-4.5",
+      "reasoning_tier": "highest",
+      "use_when": "architecture, security, ambiguous requirements, difficult debugging, final synthesis"
+    },
+    "second_highest": {
+      "model": "grok-composer-2.5-fast",
+      "reasoning_tier": "second_highest",
+      "optional": true,
+      "use_when": "routine implementation, installs, tests, scaffolding — only when discovery lists the model"
+    }
+  },
+  "profiles": {
+    "difficult": {
+      "task_class": "difficult",
+      "preferred": [
+        { "model_hint": "grok-4.5", "reasoning_tier": "highest" }
+      ]
+    },
+    "ordinary": {
+      "task_class": "ordinary",
+      "preferred": [
+        { "model_hint": "grok-4.5", "reasoning_tier": "highest" },
+        { "model_hint": "grok-composer-2.5-fast", "reasoning_tier": "second_highest", "optional": true }
+      ]
+    },
+    "simple": {
+      "task_class": "simple",
+      "preferred": [
+        { "model_hint": "grok-4.5", "reasoning_tier": "second_highest" },
+        { "model_hint": "grok-composer-2.5-fast", "reasoning_tier": "second_highest", "optional": true }
+      ]
+    }
+  },
+  "fallback_chain_default": [
+    { "model_hint": "grok-4.5", "reasoning_tier": "highest" },
+    { "model_hint": "grok-composer-2.5-fast", "reasoning_tier": "second_highest", "optional": true }
+  ],
+  "fallback_policy": {
+    "auto_advance_classifications": ["quota_exhausted", "model_unavailable"],
+    "stop_for_review_classifications": [
+      "auth_failure",
+      "network_failure",
+      "permission_failure",
+      "timeout",
+      "task_failure",
+      "unknown_error"
+    ],
+    "notes": "Grok-only chain. Never purchase credits, never mutate credentials, never route to Agy or other skills."
+  }
+}

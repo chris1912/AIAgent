@@ -1,0 +1,5 @@
+.codex/
+tests/last-offline-results.json
+*.log
+*.tmp
+*.bak
