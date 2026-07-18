@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report / 安全报告
+    url: https://github.com/chris1912/AIAgent/security/advisories/new
+    about: Report unpatched vulnerabilities privately. / 私下报告未修复漏洞。
+  - name: Support policy / 支持说明
+    url: https://github.com/chris1912/AIAgent/blob/main/SUPPORT.md
+    about: Review supported and unsupported requests. / 查看支持与不支持的请求。

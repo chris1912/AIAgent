@@ -1,0 +1,49 @@
+name: Bug report / 缺陷报告
+description: Report a reproducible problem in a repository tool / 报告仓库工具中的可复现问题
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Remove credentials, private paths, prompts, and personal data before submitting. / 提交前请删除凭据、私人路径、提示词和个人数据。"
+  - type: dropdown
+    id: project
+    attributes:
+      label: Project / 项目
+      options:
+        - grok-orchestrator
+        - multi-model-orchestrator
+        - Repository documentation / 仓库文档
+        - Other / 其他
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / 问题
+      description: Describe what happened and what you expected. / 说明实际结果与预期结果。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction / 复现步骤
+      description: Provide the smallest sanitized reproduction. / 提供最小且已脱敏的复现步骤。
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment / 环境
+      description: Include OS, PowerShell, provider CLI, and relevant model labels. / 提供操作系统、PowerShell、提供方 CLI 和相关模型标签。
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks / 安全检查
+      options:
+        - label: I removed secrets and private information. / 我已删除秘密和私人信息。
+          required: true
+        - label: I searched existing issues and documentation. / 我已搜索现有 Issue 和文档。
+          required: true

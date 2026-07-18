@@ -1,0 +1,10 @@
+.codex/
+**/.codex/
+**/tests/last-offline-results.json
+*.log
+*.tmp
+*.bak
+.env
+.env.*
+*.pem
+*.key

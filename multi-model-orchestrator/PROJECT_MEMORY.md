@@ -9,7 +9,7 @@ Coordinate local Grok CLI and Antigravity (`agy`) CLI workers while Codex retain
 
 ## Current design
 
-- Skill root: `C:\Users\shuis\.codex\skills\multi-model-orchestrator\`
+- Skill root: `$HOME\.codex\skills\multi-model-orchestrator\`
 - Run root convention: `.codex/mmo-runs/YYYY-MM-DD-<slug>/`
 - Provider contract and adapters: `references/provider-contract.md` + `scripts/Invoke-Provider.ps1`
 - Routing and reasoning-tier policy: `references/routing-policy.md` + `config/model-registry.json`
@@ -22,10 +22,10 @@ Coordinate local Grok CLI and Antigravity (`agy`) CLI workers while Codex retain
 
 ## Local CLI snapshot (2026-07-17)
 
-- Grok Build `0.2.102` at `C:\Users\shuis\.grok\bin\grok.exe`
+- Grok Build `0.2.102` discovered from the user installation.
   - Default model listed: `grok-4.5`
   - Flags of interest: `--model`, `--reasoning-effort`, `--single`/`-p`, `--cwd`, `--worktree`, `models`
-- Antigravity CLI `1.1.3` at `C:\Users\shuis\AppData\Local\agy\bin\agy.exe`
+- Antigravity CLI `1.1.3` discovered from the user installation.
   - Models observed via `agy models`: Gemini 3.5 Flash (Low/Medium/High), Gemini 3.1 Pro (Low/High), Claude Sonnet/Opus 4.6 (Thinking), GPT-OSS 120B (Medium)
   - Flags of interest: `--model`, `--print`/`-p`, `--prompt`, `--add-dir`, `models`
   - Not on default PATH in this session; discovery must search common install locations

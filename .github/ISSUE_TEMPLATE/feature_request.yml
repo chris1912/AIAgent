@@ -1,0 +1,42 @@
+name: Feature request / 功能建议
+description: Propose a focused improvement / 提出聚焦的改进建议
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: project
+    attributes:
+      label: Project / 项目
+      options:
+        - grok-orchestrator
+        - multi-model-orchestrator
+        - New tool / 新工具
+        - Repository documentation / 仓库文档
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case / 使用场景
+      description: Explain the problem rather than only the proposed solution. / 请先说明问题，而不只是描述方案。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior / 建议行为
+      description: Describe expected inputs, outputs, safety boundaries, and fallback behavior. / 说明预期输入、输出、安全边界和回退行为。
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives / 替代方案
+      description: List alternatives considered and relevant trade-offs. / 列出考虑过的替代方案和权衡。
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist / 检查清单
+      options:
+        - label: This request does not require embedded credentials or automatic credit purchases. / 本建议不要求内置凭据或自动购买额度。
+          required: true
