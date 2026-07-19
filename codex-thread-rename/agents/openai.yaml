@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex 对话改名"
+  short_description: "安全预览、核查并同步改名 Codex 本地历史对话。"
+  default_prompt: "使用 $codex-thread-rename 按九类分类为当前可见项目生成标题预览，人工核查低置信度项，validate 后再 apply，并执行 verify。"

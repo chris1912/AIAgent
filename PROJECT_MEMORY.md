@@ -22,6 +22,7 @@ Maintain a public collection of independently installable AI-agent skills, plugi
 
 - `grok-orchestrator`: Grok-only bounded delegation with 62 recorded offline checks. / 仅 Grok 的有界委派，已记录 62 项离线检查。
 - `multi-model-orchestrator`: Grok and Antigravity routing with 104 recorded offline checks. / Grok 与 Antigravity 路由，已记录 104 项离线检查。
+- `codex-thread-rename`: Safe local Codex thread classification, preview, rename, backup, and verification. / Codex 本地对话分类、预览、改名、备份和核验工具。
 
 ## Documentation Map / 文档地图
 
@@ -29,6 +30,7 @@ Maintain a public collection of independently installable AI-agent skills, plugi
 - `CONTRIBUTING.md`: issue, development, testing, and pull-request expectations. / Issue、开发、测试和 Pull Request 要求。
 - `SECURITY.md`: private vulnerability reporting and security boundaries. / 私密漏洞报告与安全边界。
 - `SUPPORT.md`: supported and unsupported requests. / 支持与不支持的请求。
+- `codex-thread-rename/`: bilingual skill instructions, classification rules, portability notes, and the safe rename script. / 双语 skill 说明、分类规则、移植说明和安全改名脚本。
 - `.github/`: issue forms and pull-request checklist. / Issue 表单与 Pull Request 检查清单。
 
 ## Maintenance Notes / 维护说明

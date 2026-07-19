@@ -16,6 +16,7 @@ This repository is a workshop rather than a single application. Each top-level d
 | --- | --- | --- | --- |
 | [`grok-orchestrator`](grok-orchestrator/) | Safe, bounded delegation from Codex to a local Grok CLI. / 由 Codex 安全、有界地委派本地 Grok CLI。 | Grok | Offline checks: 62/62 / 离线检查：62/62 |
 | [`multi-model-orchestrator`](multi-model-orchestrator/) | Attribute-aware routing, fallback, and isolated parallel work across local model CLIs. / 面向本地模型 CLI 的任务属性路由、回退与隔离并行执行。 | Grok, Antigravity (`agy`) | Offline checks: 104/104 / 离线检查：104/104 |
+| [`codex-thread-rename`](codex-thread-rename/) | Safe preview, review, and synchronization for renaming local Codex history. / 安全预览、核查并同步重命名 Codex 本地历史对话。 | Codex local state | Self-check passed / 自检通过 |
 
 Recorded test counts describe the latest documented development evidence; they do not guarantee that an external provider, model, or quota is currently available.
 
@@ -85,6 +86,7 @@ Live smoke checks should normally be limited to CLI help, version, and model dis
 AIAgent/
 ├── grok-orchestrator/          # Grok-only orchestration / 仅 Grok 编排
 ├── multi-model-orchestrator/   # Multi-provider orchestration / 多提供方编排
+├── codex-thread-rename/        # Codex local thread renaming / Codex 本地对话改名
 ├── .github/                    # Issue and pull-request templates / Issue 与 PR 模板
 └── README.md                   # Repository entry point / 仓库入口
 ```
